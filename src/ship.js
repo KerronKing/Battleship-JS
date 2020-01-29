@@ -1,7 +1,7 @@
 const Ship = (name, shipLength) => {
   const boardSize = 10;
   const position = new Array(shipLength).fill('');
-  const hitCounter = 0;
+  // const hitCounter = 0;
 
   const hit = () => {
 
