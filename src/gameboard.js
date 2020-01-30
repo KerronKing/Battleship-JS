@@ -59,22 +59,22 @@ const gameboard = (() => {
     for (let i = 0; i < array.length; i += 1) {
       const vessel = array[i];
       for (let j = 0; j < position.length; j += 1) {
-        if (vessel.position.indexOf(position[j])) {
-          return true;
+        if (vessel.position.indexOf(position[j]) >= 0) {
+          return false;
         }
       }
     }
-    return false;
+    return true;
   };
 
-  const populateBoard = (shipObjectsArray) => {
+  const populateBoard = (shipArr) => {
     // Iterates over array of ship objects
     let ship;
-
+    const shipObjectsArray = shipArr;
     for (let i = 0; i < shipObjectsArray.length; i += 1) {
       do {
         ship = createShip(shipObjectsArray[i].shipLength);
-      } while (noShipCollision(shipObjectsArray, shipObjectsArray[i].position));
+      } while (!noShipCollision(shipObjectsArray, ship));
       shipObjectsArray[i].position = ship;
     }
     return shipObjectsArray;
