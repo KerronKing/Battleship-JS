@@ -47,12 +47,15 @@ const gameflow = (() => {
     const computerInterface = document.getElementById('computer-area');
     const computerDivs = computerInterface.children;
 
+    const playerInterface = document.getElementById('player-area');
+    const playerDivs = playerInterface.children;
+
     if (players[0].moveNumber % 2 === 1) {
       computerDivs.forEach((elem, i) => {
         elem.addEventListener('click', (e) => {
           e.preventDefault();
           if (gameboard.computerArea[i] === 'ship') {
-            elem.classlist.add('ship-hit');
+            elem.classList.add('ship-hit');
             gameboard.computerArea[i] = 'hit';
             computerShips.forEach((item, j) => {
               if(item.position[j] == i){
@@ -60,7 +63,7 @@ const gameflow = (() => {
               }
             })
           } else if (gameboard.computerArea[i] === false) {
-            elem.classlist.add('missed');
+            elem.classList.add('missed');
             gameboard.computerArea[i] = 'miss';
             players[0].moveNumber++;
             players[1].moveNumber++;
@@ -69,6 +72,24 @@ const gameflow = (() => {
           }
         });
       });
+    } else {
+        const computerTarget = Math.floor(Math.random() * 100);
+        const target = document.getElementById(`pa-${computerTarget}`);
+        if(gameboard.playerArea[computerTarget] === 'ship') {
+        target.classList.add('ship-hit');
+        gameboard.playerArea[computerTarget] = 'hit';
+        playerShips.forEach((item, j) => {
+          if(item.position[j] == computerTarget){
+            item.hit();
+          } else if(gameboard.playerArea[computerTarget] === false) {
+          target.classList.add('missed');
+          gameboard.playerArea[computerTarget] === 'miss';
+          players[0].moveNumber++;
+          players[1].moveNumber++;
+        } else if(gameboard.playerArea[computerTarget] === 'hit') {
+                    
+      }
+    )}
     }
   };
 
