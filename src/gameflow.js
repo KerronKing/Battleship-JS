@@ -12,16 +12,16 @@ const gameflow = (() => {
     alert('Invalid move. Please play again.');
   }
 
-  const playerTurnPrompt = () => {
-    const playerTurn = document.getElementById('turn');
-    playerTurn.classList.replace('hidden', 'visible');
-    playerTurn.textContent = `${players[0].name}'s Turn!`;
-  }
-
-  const computerTurnPrompt = () => {
-    const computerTurn = document.getElementById('computer-turn');
-    computerTurn.textContent = "Computer's Turn!";
-  }
+  // const playerTurnPrompt = () => {
+  //   const playerTurn = document.getElementById('turn');
+  //   playerTurn.classList.replace('hidden', 'visible');
+  //   playerTurn.textContent = `${players[0].name}'s Turn!`;
+  // }
+  //
+  // const computerTurnPrompt = () => {
+  //   const computerTurn = document.getElementById('computer-turn');
+  //   computerTurn.textContent = "Computer's Turn!";
+  // }
 
   const generatePlayers = (data) => {
     const player = Player(data, 1);
@@ -48,13 +48,17 @@ const gameflow = (() => {
     const computerDivs = computerInterface.children;
 
     if (players[0].moveNumber % 2 === 1) {
-      // prompt player to make a move
       computerDivs.forEach((elem, i) => {
         elem.addEventListener('click', (e) => {
           e.preventDefault();
           if (gameboard.computerArea[i] === 'ship') {
             elem.classlist.add('ship-hit');
             gameboard.computerArea[i] = 'hit';
+            computerShips.forEach((item, j) => {
+              if(item.position[j] == i){
+              item.hit();
+              }
+            })
           } else if (gameboard.computerArea[i] === false) {
             elem.classlist.add('missed');
             gameboard.computerArea[i] = 'miss';

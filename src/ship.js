@@ -3,7 +3,7 @@ const Ship = (name, shipLength) => {
   const hitCounter = 0;
 
   const hit = () => {
-
+    this.hitCounter++;
   };
 
   const isSunk = () => this.hitCounter === this.shipLength;
