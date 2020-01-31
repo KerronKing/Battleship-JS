@@ -56,12 +56,14 @@ const gameflow = (() => {
             gameboard.computerArea[i] = 'hit';
             computerShips.forEach((item, j) => {
               if(item.position[j] == i){
-              item.hit();
+                item.hit();
               }
             })
           } else if (gameboard.computerArea[i] === false) {
             elem.classlist.add('missed');
             gameboard.computerArea[i] = 'miss';
+            players[0].moveNumber++;
+            players[1].moveNumber++;
           } else if (gameboard.computerArea[i] === 'hit') {
             invalidMoveAlert();
           }
