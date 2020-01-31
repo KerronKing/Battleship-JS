@@ -1,7 +1,5 @@
+const gameboard = require('./gameboard');
 const dom = (() => {
-  const playerArea = new Array(100).fill(false);
-  const computerArea = new Array(100).fill(false);
-
   const playerAreaRender = () => {
     const playerInterface = document.getElementById('player-area');
     for (let i = 0; i < 100; i += 1) {
@@ -17,16 +15,16 @@ const dom = (() => {
       const compArea = document.createElement('DIV');
       compArea.classList.add('square');
       compArea.id = `ca-${i}`;
-      const event = compArea.addEventListener('click', (e) => {
+      compArea.addEventListener('click', (e) => {
         e.preventDefault();
-        if (computerArea[i] === 'ship') {
+        if (gameboard.computerArea[i] === 'ship') {
           compArea.classlist.add('ship-hit');
-          computerArea[i] = 'hit';
-          compArea.removeEventListener('click', event, false);
-        } else if (computerArea[i] === false) {
+          gameboard.computerArea[i] = 'hit';
+        } else if (gameboard.computerArea[i] === false) {
           compArea.classlist.add('missed');
-          computerArea[i] = 'miss';
-          compArea.removeEventListener('click', event, false);
+          gameboard.computerArea[i] = 'miss';
+        } else if (gameboard.computerArea[i] === 'hit') {
+          // call custom alert function, prompting the player to make another move.
         }
       });
       computerInterface.appendChild(compArea);

@@ -1,4 +1,6 @@
 const gameboard = (() => {
+  const playerArea = new Array(100).fill(false);
+  const computerArea = new Array(100).fill(false);
   const createShip = (length) => {
     const directionArray = ['horizontal', 'vertical'];
     const direction = directionArray[Math.floor(Math.random() * 2)];
@@ -46,6 +48,6 @@ const gameboard = (() => {
     return shipObjectsArray;
   };
 
-  return { populateBoard };
+  return { playerArea, computerArea, populateBoard };
 })();
 export default gameboard;
