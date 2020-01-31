@@ -3,3 +3,5 @@ const Player = (name) => {
 
   return { name, movenumber };
 }
+
+export default Player;
