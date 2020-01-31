@@ -8,6 +8,21 @@ const gameflow = (() => {
   const playerShips = [];
   const computerShips = [];
 
+  const invalidMoveAlert = () => {
+    alert('Invalid move. Please play again.');
+  }
+
+  const playerTurnPrompt = () => {
+    const playerTurn = document.getElementById('turn');
+    playerTurn.classList.replace('hidden', 'visible');
+    playerTurn.textContent = `${players[0].name}'s Turn!`;
+  }
+
+  const computerTurnPrompt = () => {
+    const computerTurn = document.getElementById('computer-turn');
+    computerTurn.textContent = "Computer's Turn!";
+  }
+
   const generatePlayers = (data) => {
     const player = Player(data, 1);
     const computer = Player('Computer', 0);
@@ -44,7 +59,7 @@ const gameflow = (() => {
             elem.classlist.add('missed');
             gameboard.computerArea[i] = 'miss';
           } else if (gameboard.computerArea[i] === 'hit') {
-            // call custom alert function, prompting the player to make another move.
+            invalidMoveAlert();
           }
         });
       });

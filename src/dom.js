@@ -8,6 +8,7 @@ const dom = (() => {
       playerInterface.appendChild(area);
     }
   };
+
   const computerAreaRender = () => {
     const computerInterface = document.getElementById('computer-area');
     for (let i = 0; i < 100; i += 1) {
