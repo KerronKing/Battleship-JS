@@ -81,6 +81,24 @@ const gameflow = (() => {
       }
     }
   };
+  const gameWon = (playerShipArr, computerShipArr, arr) => {
+    let firstCounter = 0;
+    let secondCounter = 0;
+    const playerArr = arr;
+    for (let i = 0; i < playerShips.length; i += 1) {
+      if (playerShipArr[i].isSunk()) firstCounter += 1;
+      if (computerShipArr[i].isSunk()) secondCounter += 1;
+    }
+    if (firstCounter === 5) {
+      playerArr[0].won = true;
+      return true;
+    }
+    if (secondCounter === 5) {
+      playerArr[1].won = true;
+      return true;
+    }
+    return false;
+  };
 
   const start = () => {
     const startBtn = document.getElementById('start');

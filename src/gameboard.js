@@ -35,14 +35,18 @@ const gameboard = (() => {
     return true;
   };
 
-  const populateBoard = (shipArr) => {
+  const populateBoard = (shipArr, areaArray) => {
     // Iterates over array of ship objects
     let ship;
     const shipObjectsArray = shipArr;
+    const area = areaArray;
     for (let i = 0; i < shipObjectsArray.length; i += 1) {
       do {
         ship = createShip(shipObjectsArray[i].shipLength);
       } while (!noShipCollision(shipObjectsArray, ship));
+      ship.forEach((x) => {
+        area[x] = 'ship';
+      });
       shipObjectsArray[i].position = ship;
     }
     return shipObjectsArray;
