@@ -1,7 +1,2 @@
-const Player = (name) => {
-  const movenumber = 0;
-
-  return { name, movenumber };
-}
-
+const Player = (name, moveNumber) => ({ name, moveNumber });
 export default Player;

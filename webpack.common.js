@@ -11,9 +11,9 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [
-          'style-loader', 
-          'css-loader'
-        ]
+          'style-loader',
+          'css-loader',
+        ],
       },
       {
         test: /\.html$/i,
@@ -28,10 +28,10 @@ module.exports = {
             options: {
               name: '[name].[ext]',
               outputPath: 'dist/assets',
-              disable: true
-            }
-          }
-        ]
+              disable: true,
+            },
+          },
+        ],
       },
     ],
   },
