@@ -26,10 +26,28 @@ const gameflow = (() => {
     gameboard.populateBoard(playerShips);
     gameboard.populateBoard(computerShips);
 
-    for (let i = 0; i < players.length; i += 1) {
-      if (players[i].moveNumber % 2 === 1) {
+    dom.playerAreaRender();
+    dom.computerAreaRender();
 
-      }
+    const computerInterface = document.getElementById('computer-area');
+    const computerDivs = computerInterface.children;
+
+    if (players[0].moveNumber % 2 === 1) {
+      // prompt player to make a move
+      computerDivs.forEach((elem, i) => {
+        elem.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (gameboard.computerArea[i] === 'ship') {
+            elem.classlist.add('ship-hit');
+            gameboard.computerArea[i] = 'hit';
+          } else if (gameboard.computerArea[i] === false) {
+            elem.classlist.add('missed');
+            gameboard.computerArea[i] = 'miss';
+          } else if (gameboard.computerArea[i] === 'hit') {
+            // call custom alert function, prompting the player to make another move.
+          }
+        });
+      });
     }
   };
 

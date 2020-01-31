@@ -1,4 +1,3 @@
-const gameboard = require('./gameboard');
 const dom = (() => {
   const playerAreaRender = () => {
     const playerInterface = document.getElementById('player-area');
@@ -15,18 +14,6 @@ const dom = (() => {
       const compArea = document.createElement('DIV');
       compArea.classList.add('square');
       compArea.id = `ca-${i}`;
-      compArea.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (gameboard.computerArea[i] === 'ship') {
-          compArea.classlist.add('ship-hit');
-          gameboard.computerArea[i] = 'hit';
-        } else if (gameboard.computerArea[i] === false) {
-          compArea.classlist.add('missed');
-          gameboard.computerArea[i] = 'miss';
-        } else if (gameboard.computerArea[i] === 'hit') {
-          // call custom alert function, prompting the player to make another move.
-        }
-      });
       computerInterface.appendChild(compArea);
     }
   };
