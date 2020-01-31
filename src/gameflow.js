@@ -8,9 +8,7 @@ const gameflow = (() => {
   const playerShips = [];
   const computerShips = [];
 
-  const invalidMoveAlert = () => {
-    alert('Invalid move. Please play again.');
-  }
+  const invalidMoveAlert = () => 'Invalid move. Please play again.';
 
   const generatePlayers = (data) => {
     const player = Player(data, 1);
@@ -25,6 +23,10 @@ const gameflow = (() => {
       computerShips.push(ship);
     }
   };
+  const computerTarget = (array) => {
+    const num = Math.floor(Math.random() * 10);
+    return array[num] === 'miss' || array[num] === 'hit' ? computerTarget(array) : num;
+  };
   const runGame = () => {
     generateShips();
     gameboard.populateBoard(playerShips);
@@ -36,9 +38,6 @@ const gameflow = (() => {
     const computerInterface = document.getElementById('computer-area');
     const computerDivs = computerInterface.children;
 
-    const playerInterface = document.getElementById('player-area');
-    const playerDivs = playerInterface.children;
-
     if (players[0].moveNumber % 2 === 1) {
       computerDivs.forEach((elem, i) => {
         elem.addEventListener('click', (e) => {
@@ -47,38 +46,39 @@ const gameflow = (() => {
             elem.classList.add('ship-hit');
             gameboard.computerArea[i] = 'hit';
             computerShips.forEach((item, j) => {
-              if(item.position[j] == i){
+              if (item.position[j] === i) {
                 item.hit();
               }
-            })
+            });
           } else if (gameboard.computerArea[i] === false) {
             elem.classList.add('missed');
             gameboard.computerArea[i] = 'miss';
-            players[0].moveNumber++;
-            players[1].moveNumber++;
+            players[0].moveNumber += 1;
+            players[1].moveNumber += 1;
           } else if (gameboard.computerArea[i] === 'hit') {
             invalidMoveAlert();
           }
         });
       });
     } else {
-        const computerTarget = Math.floor(Math.random() * 100);
-        const target = document.getElementById(`pa-${computerTarget}`);
-        if(gameboard.playerArea[computerTarget] === 'ship') {
-        target.classList.add('ship-hit');
-        gameboard.playerArea[computerTarget] = 'hit';
-        playerShips.forEach((item, j) => {
-          if(item.position[j] == computerTarget){
-            item.hit();
-          } else if(gameboard.playerArea[computerTarget] === false) {
+      const num = computerTarget(gameboard.playerArea);
+      while (players[1].moveNumber % 2 === 1) {
+        const target = document.getElementById(`pa-${num}`);
+        if (gameboard.playerArea[num] === 'ship') {
+          target.classList.add('ship-hit');
+          gameboard.playerArea[num] = 'hit';
+          playerShips.forEach((item, j) => {
+            if (item.position[j] === num) {
+              item.hit();
+            }
+          });
+        } else if (gameboard.playerArea[num] === false) {
           target.classList.add('missed');
-          gameboard.playerArea[computerTarget] === 'miss';
-          players[0].moveNumber++;
-          players[1].moveNumber++;
-        } else if(gameboard.playerArea[computerTarget] === 'hit') {
-
+          gameboard.playerArea[num] = 'miss';
+          players[0].moveNumber += 1;
+          players[1].moveNumber += 1;
+        }
       }
-    )}
     }
   };
 
