@@ -1,9 +1,27 @@
 .hidden {
-  visibility: none;
+  visibility: hidden;
   height: 0px;
   width: 0px;
 }
 
 .visible {
   visibility: visible;
+}
+
+.container {
+display: grid;
+grid-template-columns: repeat(10, 1fr);
+grid-template-rows: repeat(10, 1fr);
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+left: 40rem;
+position: relative;
+top: 2.5rem;
+width: 500px;
+}
+
+.square {
+border: 1px solid;
+height: 1.5rem;
+width: 100%;
 }
