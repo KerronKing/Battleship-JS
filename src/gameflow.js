@@ -4,9 +4,9 @@ const Player = require('./player');
 const Ship = require('./ship');
 
 const gameflow = (() => {
-  const players = [];
-  const playerShips = [];
-  const computerShips = [];
+  let players = [];
+  let playerShips = [];
+  let computerShips = [];
 
   const invalidMoveAlert = () => 'Invalid move. Please play again.';
 
@@ -26,6 +26,24 @@ const gameflow = (() => {
   const computerTarget = (array) => {
     const num = Math.floor(Math.random() * 10);
     return array[num] === 'miss' || array[num] === 'hit' ? computerTarget(array) : num;
+  };
+  const gameWon = (playerShipArr, computerShipArr, arr) => {
+    let firstCounter = 0;
+    let secondCounter = 0;
+    const playerArr = arr;
+    for (let i = 0; i < playerShips.length; i += 1) {
+      if (playerShipArr[i].isSunk()) firstCounter += 1;
+      if (computerShipArr[i].isSunk()) secondCounter += 1;
+    }
+    if (firstCounter === 5) {
+      playerArr[0].won = true;
+      return true;
+    }
+    if (secondCounter === 5) {
+      playerArr[1].won = true;
+      return true;
+    }
+    return false;
   };
   const runGame = () => {
     generateShips();
@@ -81,31 +99,27 @@ const gameflow = (() => {
       }
     }
   };
-  const gameWon = (playerShipArr, computerShipArr, arr) => {
-    let firstCounter = 0;
-    let secondCounter = 0;
-    const playerArr = arr;
-    for (let i = 0; i < playerShips.length; i += 1) {
-      if (playerShipArr[i].isSunk()) firstCounter += 1;
-      if (computerShipArr[i].isSunk()) secondCounter += 1;
-    }
-    if (firstCounter === 5) {
-      playerArr[0].won = true;
-      return true;
-    }
-    if (secondCounter === 5) {
-      playerArr[1].won = true;
-      return true;
-    }
-    return false;
-  };
+  const resetGame = () => {
+    players = [];
+    playerShips = [];
+    computerShips = [];
+    gameboard.playerArea = new Array(100).fill(false);
+    gameboard.computerArea = new Array(100).fill(false);
 
+    const playerInterface = document.getElementById('player-area');
+    const computerInterface = document.getElementById('computer-area');
+
+    playerInterface.innerHTML = '';
+    computerInterface.innerHTML = '';
+  };
   const start = () => {
     const startBtn = document.getElementById('start');
     const restartBtn = document.getElementById('restart');
     const inputForm = document.getElementById('user-form');
     const submitBtn = document.getElementById('user-submit');
     const formContainer = document.getElementById('input-container');
+    const status = document.getElementById('status');
+
     submitBtn.addEventListener('submit', (e) => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(inputForm));
@@ -114,9 +128,14 @@ const gameflow = (() => {
       startBtn.classList.replace('visible', 'hidden');
       restartBtn.classList.replace('hidden', 'visible');
       runGame();
+      if (gameWon() && players[0].won) {
+        status.textContent = `${players[0].name} has won the game! Click "restart" to play again.`;
+      } else if (gameWon() && players[1].won) {
+        status.textContent = `The ${players[1].name} has won the game! Click "restart" to play again.`;
+      }
     });
   };
 
-  return { start };
+  return { start, resetGame };
 })();
 module.exports = gameflow;
