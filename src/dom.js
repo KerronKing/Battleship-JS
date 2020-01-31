@@ -34,4 +34,4 @@ const dom = (() => {
   };
   return { playerAreaRender, computerAreaRender };
 })();
-export default dom;
+module.exports = dom;
