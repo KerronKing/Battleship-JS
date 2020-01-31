@@ -7,8 +7,22 @@
   <title>Battleship</title>
 </head>
 <body>
+
+  <div id="start-area">
+    <button id="start" class="visible">Start Game</button>
+    <button id="restart" class="hidden">Restart Game</button>
+  </div>
+
+  <div id="input-container">
+    <form id="user-form">
+      <input type="text" placeholder="Enter player name" id="form-input">
+      <button type="submit" id="user-submit">Submit</button>
+    </form>
+  </div>
+
   <div id="player-area" class="container"></div><br><br><br>
   <div id="computer-area" class="container"></div>
+
   <script src="main.js"></script>
 </body>
 </html>
