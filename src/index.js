@@ -1,5 +1,5 @@
-require('./style.css');
-const gameflow = require('./gameflow');
+import './style.css';
+import gameflow from './gameflow';
 
 const startBtn = document.getElementById('start');
 const restartBtn = document.getElementById('restart');

@@ -1,7 +1,7 @@
-const dom = require('./dom');
-const gameboard = require('./gameboard');
-const Player = require('./player');
-const Ship = require('./ship');
+import dom from './dom';
+import gameboard from './gameboard';
+import Player from './player';
+import Ship from './ship';
 
 const gameflow = (() => {
   let players = [];
@@ -18,8 +18,11 @@ const gameflow = (() => {
   };
   const generateShips = () => {
     for (let i = 1; i <= 5; i += 1) {
-      const ship = Ship(`ship-${i}`, i);
+      const ship = Ship(`player-ship-${i}`, i);
       playerShips.push(ship);
+    }
+    for (let i = 1; i <= 5; i += 1) {
+      const ship = Ship(`computer-ship-${i}`, i);
       computerShips.push(ship);
     }
   };
@@ -47,17 +50,19 @@ const gameflow = (() => {
   };
   const runGame = () => {
     generateShips();
-    gameboard.populateBoard(playerShips);
-    gameboard.populateBoard(computerShips);
+    gameboard.populateBoard(playerShips, gameboard.playerArea);
+    gameboard.populateBoard(computerShips, gameboard.computerArea);
 
     dom.playerAreaRender();
     dom.computerAreaRender();
+    console.log(players);
+    console.log(playerShips);
+    console.log(computerShips);
 
-    const computerInterface = document.getElementById('computer-area');
-    const computerDivs = computerInterface.children;
-
-    if (players[0].moveNumber % 2 === 1) {
-      computerDivs.forEach((elem, i) => {
+    const playerMove = () => {
+      const computerInterface = document.getElementById('computer-area');
+      const computerDivs = computerInterface.children;
+      Array.from(computerDivs).forEach((elem, i) => {
         elem.addEventListener('click', (e) => {
           e.preventDefault();
           if (gameboard.computerArea[i] === 'ship') {
@@ -68,19 +73,26 @@ const gameflow = (() => {
                 item.hit();
               }
             });
+            console.log(gameboard.computerArea);
           } else if (gameboard.computerArea[i] === false) {
             elem.classList.add('missed');
             gameboard.computerArea[i] = 'miss';
             players[0].moveNumber += 1;
             players[1].moveNumber += 1;
+            console.log(players);
+            console.log(gameboard.computerArea);
           } else if (gameboard.computerArea[i] === 'hit') {
             invalidMoveAlert();
           }
         });
       });
-    } else {
-      const num = computerTarget(gameboard.playerArea);
-      while (players[1].moveNumber % 2 === 1) {
+    };
+
+    while (!gameWon(playerShips, computerShips, players)) {
+      if (players[0].moveNumber % 2 === 1) {
+        playerMove();
+      } else if (players[1].moveNumber % 2 === 1) {
+        const num = computerTarget(gameboard.playerArea);
         const target = document.getElementById(`pa-${num}`);
         if (gameboard.playerArea[num] === 'ship') {
           target.classList.add('ship-hit');
@@ -96,6 +108,7 @@ const gameflow = (() => {
           players[0].moveNumber += 1;
           players[1].moveNumber += 1;
         }
+        console.log(gameboard.playerArea);
       }
     }
   };
@@ -115,22 +128,21 @@ const gameflow = (() => {
   const start = () => {
     const startBtn = document.getElementById('start');
     const restartBtn = document.getElementById('restart');
-    const inputForm = document.getElementById('user-form');
-    const submitBtn = document.getElementById('user-submit');
+    const inputForm = document.forms['user-form'];
     const formContainer = document.getElementById('input-container');
     const status = document.getElementById('status');
 
-    submitBtn.addEventListener('submit', (e) => {
+    inputForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(inputForm));
-      generatePlayers(data);
+      generatePlayers(data.name);
       formContainer.classList.replace('visible', 'hidden');
       startBtn.classList.replace('visible', 'hidden');
       restartBtn.classList.replace('hidden', 'visible');
       runGame();
-      if (gameWon() && players[0].won) {
+      if (gameWon(playerShips, computerShips, players) && players[0].won) {
         status.textContent = `${players[0].name} has won the game! Click "restart" to play again.`;
-      } else if (gameWon() && players[1].won) {
+      } else if (gameWon(playerShips, computerShips, players) && players[1].won) {
         status.textContent = `The ${players[1].name} has won the game! Click "restart" to play again.`;
       }
     });
@@ -138,4 +150,4 @@ const gameflow = (() => {
 
   return { start, resetGame };
 })();
-module.exports = gameflow;
+export default gameflow;
