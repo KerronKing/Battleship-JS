@@ -48,6 +48,7 @@ const gameflow = (() => {
     }
     return false;
   };
+  
   const runGame = () => {
     generateShips();
     gameboard.populateBoard(playerShips, gameboard.playerArea);
@@ -104,6 +105,7 @@ const gameflow = (() => {
             players[1].moveNumber += 1;
             computerMove();
             console.log(computerShips);
+            console.log(gameWon(playerShips, computerShips, players));
             // console.log(gameboard.computerArea);
           } else if (gameboard.computerArea[i] === 'hit') {
             invalidMoveAlert();

@@ -1,15 +1,10 @@
 const Ship = (name, shipLength) => {
   const position = new Array(shipLength).fill('');
-  let hitCounter = 0;
   const hitPositions = [];
 
-  const hit = () => {
-    hitCounter += 1;
-  };
-
-  const isSunk = () => hitCounter === shipLength;
+  const isSunk = () => hitPositions.length === shipLength;
   return {
-    name, shipLength, position, hitPositions, hitCounter, hit, isSunk,
+    name, shipLength, position, hitPositions, isSunk,
   };
 };
 export default Ship;
