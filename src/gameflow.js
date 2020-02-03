@@ -68,7 +68,7 @@ const gameflow = (() => {
           gameboard.playerArea[num] = 'hit';
           playerShips.forEach((item, j) => {
             if (item.position[j] === num) {
-              item.hit();
+              item.hitCounter +=1;
             }
           });
         } else if (gameboard.playerArea[num] === false) {
@@ -91,19 +91,20 @@ const gameflow = (() => {
             elem.classList.add('ship-hit');
             gameboard.computerArea[i] = 'hit';
             computerShips.forEach((item, j) => {
-              if (item.position[j] === i) {
-                item.hit();
+              if(item.position.indexOf(i) >= 0){
+                item.hitPositions.push(i);
               }
             });
-            console.log(gameboard.computerArea);
+            console.log(computerShips);
+            // console.log(gameboard.computerArea);
           } else if (gameboard.computerArea[i] === false) {
             elem.classList.add('missed');
             gameboard.computerArea[i] = 'miss';
             players[0].moveNumber += 1;
             players[1].moveNumber += 1;
             computerMove();
-            console.log(players);
-            console.log(gameboard.computerArea);
+            console.log(computerShips);
+            // console.log(gameboard.computerArea);
           } else if (gameboard.computerArea[i] === 'hit') {
             invalidMoveAlert();
           }
@@ -111,8 +112,11 @@ const gameflow = (() => {
       });
     } else if (gameWon(playerShips, computerShips, players) && players[0].won) {
       status.textContent = `${players[0].name} has won the game! Click "restart" to play again.`;
+      console.log(computerShips);
+      console.log('won');
     } else if (gameWon(playerShips, computerShips, players) && players[1].won) {
       status.textContent = `The ${players[1].name} has won the game! Click "restart" to play again.`;
+      console.log('won');
     }
   };
   const resetGame = () => {
