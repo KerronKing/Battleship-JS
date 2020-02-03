@@ -1,6 +1,5 @@
 const Player = (name, moveNumber) => {
-  let sunkShipPositions = 0;
   const won = false;
-  return { name, moveNumber, won, sunkShipPositions };
+  return { name, moveNumber, won };
 };
 export default Player;
