@@ -26,29 +26,25 @@ const gameflow = (() => {
       computerShips.push(ship);
     }
   };
+
   const computerTarget = (array) => {
     const num = Math.floor(Math.random() * 10);
     return array[num] === 'miss' || array[num] === 'hit' ? computerTarget(array) : num;
   };
-  const gameWon = (playerShipArr, computerShipArr, arr) => {
-    let firstCounter = 0;
-    let secondCounter = 0;
+
+  const gameWon = (arr) => {
     const playerArr = arr;
-    for (let i = 0; i < playerShips.length; i += 1) {
-      if (playerShipArr[i].isSunk()) firstCounter += 1;
-      if (computerShipArr[i].isSunk()) secondCounter += 1;
-    }
-    if (firstCounter === 5) {
+    if (playerArr[0].sunkShipPositions === 15) {
       playerArr[0].won = true;
       return true;
     }
-    if (secondCounter === 5) {
+    if (playerArr[1].sunkShipPositions === 15) {
       playerArr[1].won = true;
       return true;
     }
     return false;
   };
-  
+
   const runGame = () => {
     generateShips();
     gameboard.populateBoard(playerShips, gameboard.playerArea);
@@ -56,8 +52,6 @@ const gameflow = (() => {
 
     dom.playerAreaRender();
     dom.computerAreaRender();
-    console.log(players);
-    console.log(playerShips);
     console.log(computerShips);
 
     const computerMove = () => {
@@ -70,6 +64,9 @@ const gameflow = (() => {
           playerShips.forEach((item, j) => {
             if (item.position[j] === num) {
               item.hitCounter +=1;
+            }
+            if (item.isSunk()) {
+              players[0].sunkShipPositions += 1;
             }
           });
         } else if (gameboard.playerArea[num] === false) {
@@ -91,13 +88,17 @@ const gameflow = (() => {
           if (gameboard.computerArea[i] === 'ship') {
             elem.classList.add('ship-hit');
             gameboard.computerArea[i] = 'hit';
+            console.log(gameWon(playerShips, computerShips, players));
             computerShips.forEach((item, j) => {
               if(item.position.indexOf(i) >= 0){
                 item.hitPositions.push(i);
               }
+              if (item.isSunk()) {
+                players[1].sunkShipPositions += 1;
+              }
             });
+            console.log(players);
             console.log(computerShips);
-            // console.log(gameboard.computerArea);
           } else if (gameboard.computerArea[i] === false) {
             elem.classList.add('missed');
             gameboard.computerArea[i] = 'miss';
@@ -105,8 +106,7 @@ const gameflow = (() => {
             players[1].moveNumber += 1;
             computerMove();
             console.log(computerShips);
-            console.log(gameWon(playerShips, computerShips, players));
-            // console.log(gameboard.computerArea);
+            console.log(players);
           } else if (gameboard.computerArea[i] === 'hit') {
             invalidMoveAlert();
           }
@@ -115,11 +115,12 @@ const gameflow = (() => {
     } else if (gameWon(playerShips, computerShips, players) && players[0].won) {
       status.textContent = `${players[0].name} has won the game! Click "restart" to play again.`;
       console.log(computerShips);
-      console.log('won');
+      console.log(gameWon(playerShips, computerShips, players));
     } else if (gameWon(playerShips, computerShips, players) && players[1].won) {
       status.textContent = `The ${players[1].name} has won the game! Click "restart" to play again.`;
-      console.log('won');
+      console.log(gameWon(playerShips, computerShips, players));
     }
+    console.log(gameWon(playerShips, computerShips, players));
   };
   const resetGame = () => {
     players = [];
@@ -151,6 +152,6 @@ const gameflow = (() => {
     });
   };
 
-  return { start, resetGame };
+  return { start, resetGame, gameWon, playerShips, computerShips, players };
 })();
 export default gameflow;
