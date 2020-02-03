@@ -9,6 +9,10 @@ const gameflow = (() => {
   let computerShips = [];
   let playerSunkPositionsCounter = 0;
   let computerSunkPositionsCounter = 0;
+  const status = document.getElementById('status');
+  const playerInterface = document.getElementById('player-area');
+  const computerInterface = document.getElementById('computer-area');
+  const grids = document.getElementById('grids');
 
   const invalidMoveAlert = () => 'Invalid move. Please play again.';
 
@@ -71,6 +75,10 @@ const gameflow = (() => {
             }
           });
           playerSunkPositionsCounter += 1;
+          if (gameWon(players)) {
+            grids.classList.replace('visible', 'hidden');
+            status.textContent = `${players[1].name} has won the game! Click restart to play again.`;
+          }
         } else if (gameboard.playerArea[num] === false) {
           target.classList.add('missed');
           gameboard.playerArea[num] = 'miss';
@@ -79,44 +87,40 @@ const gameflow = (() => {
         }
       }
     };
-    const status = document.getElementById('status');
-    const computerInterface = document.getElementById('computer-area');
     const computerDivs = computerInterface.children;
-    if (!gameWon(players)) {
-      Array.from(computerDivs).forEach((elem, i) => {
-        elem.addEventListener('click', (e) => {
-          e.preventDefault();
-          if (gameboard.computerArea[i] === 'ship') {
-            elem.classList.add('ship-hit');
-            gameboard.computerArea[i] = 'hit';
-            computerShips.forEach((item) => {
-              if (item.position.indexOf(i) >= 0) {
-                item.hitPositions.push(i);
-              }
-            });
-            computerSunkPositionsCounter += 1;
-            console.log(computerShips);
-            console.log([computerSunkPositionsCounter, playerSunkPositionsCounter]);
-            console.log(gameWon(players));
-          } else if (gameboard.computerArea[i] === false) {
-            elem.classList.add('missed');
-            gameboard.computerArea[i] = 'miss';
-            players[0].moveNumber += 1;
-            players[1].moveNumber += 1;
-            computerMove(i);
-            console.log(computerShips);
-            console.log([computerSunkPositionsCounter, playerSunkPositionsCounter]);
-            console.log(gameWon(players));
-          } else if (gameboard.computerArea[i] === 'hit') {
-            invalidMoveAlert();
+    Array.from(computerDivs).forEach((elem, i) => {
+      elem.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (gameboard.computerArea[i] === 'ship') {
+          elem.classList.add('ship-hit');
+          gameboard.computerArea[i] = 'hit';
+          computerShips.forEach((item) => {
+            if (item.position.indexOf(i) >= 0) {
+              item.hitPositions.push(i);
+            }
+          });
+          computerSunkPositionsCounter += 1;
+          if (gameWon(players)) {
+            grids.classList.replace('visible', 'hidden');
+            status.textContent = `${players[0].name} has won the game! Click restart to play again.`;
           }
-        });
+          console.log(computerShips);
+          console.log([computerSunkPositionsCounter, playerSunkPositionsCounter]);
+          console.log(gameWon(players));
+        } else if (gameboard.computerArea[i] === false) {
+          elem.classList.add('missed');
+          gameboard.computerArea[i] = 'miss';
+          players[0].moveNumber += 1;
+          players[1].moveNumber += 1;
+          computerMove(i);
+          console.log(computerShips);
+          console.log([computerSunkPositionsCounter, playerSunkPositionsCounter]);
+          console.log(gameWon(players));
+        } else if (gameboard.computerArea[i] === 'hit') {
+          invalidMoveAlert();
+        }
       });
-    } else if (gameWon(players) && players[0].won) {
-      status.textContent = `${players[0].name} has won the game! Click "restart" to play again.`;
-    } else if (gameWon(playerShips, computerShips, players) && players[1].won) {
-      status.textContent = `The ${players[1].name} has won the game! Click "restart" to play again.`;
-    }
+    });
   };
   const resetGame = () => {
     players = [];
@@ -124,10 +128,6 @@ const gameflow = (() => {
     computerShips = [];
     gameboard.playerArea = new Array(100).fill(false);
     gameboard.computerArea = new Array(100).fill(false);
-
-    const playerInterface = document.getElementById('player-area');
-    const computerInterface = document.getElementById('computer-area');
-
     playerInterface.innerHTML = '';
     computerInterface.innerHTML = '';
   };
