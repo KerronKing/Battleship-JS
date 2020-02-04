@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Bowlby+One+SC|Lobster&display=swap');
+
 body {
-  font-family: Impact, Charcoal, sans-serif;
+  font-family: 'Lobster', cursive;
+  background-color: #1C5584;
+  color: #E7E7E7;
 }
 
 .hidden {
@@ -15,6 +19,14 @@ body {
 .btn {
   padding: 0.9rem;
   margin-bottom: 20px;
+  background-color: #2b7d88;
+  color: #E7E7E7;
+  border: 0px;
+}
+
+h1 {
+    font-family: 'Bowlby One SC';
+  font-size: 42px;
 }
 
 input {
@@ -23,11 +35,15 @@ input {
 
 #user-submit {
   padding: 0.6rem;
+  background-color: #2b7d88;
+  color: #E7E7E7;
+  border: 0px;
 }
 
 #status {
   text-align: center;
   font-size: 42px;
+  font-family: 'Sigmar One', cursive;
 }
 
 .wrapper {
@@ -63,11 +79,14 @@ input {
 
 #player-area {
   margin-left: -15rem;
-  background-image: url("paper.gif");
+  background-image: url("water.jpg");
+  background-size: cover;
 }
 
 #computer-area {
   margin-left: 9rem;
+  background-image: url("water.jpg");
+  background-size: cover;
 }
 
 .fade-in {
