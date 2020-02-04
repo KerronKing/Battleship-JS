@@ -8,25 +8,31 @@
 </head>
 <body>
 
-  <div id="start-area">
-    <button id="start" class="visible btn">Start Game</button>
-    <button id="restart" class="hidden btn">Restart Game</button>
+  <div class="wrapper">
+    <div id="start-area fade-in">
+      <h1>BATTLESHIP</h1>
+      <p>Start the game below!</p>
+
+      <button id="start" class="visible btn">Start Game</button>
+      <button id="restart" class="hidden btn">Restart Game</button>
+    </div>
+
+    <div id="input-container" class="hidden">
+      <form id="user-form">
+        <input type="text" placeholder="Enter player name" id="form-input" name="name">
+        <button type="submit" id="user-submit">Submit</button>
+      </form>
+    </div>
+
   </div>
 
-  <div id="input-container" class="hidden">
-    <form id="user-form">
-      <input type="text" placeholder="Enter player name" id="form-input" name="name">
-      <button type="submit" id="user-submit">Submit</button>
-    </form>
-  </div>
+  <!-- <div id="status">Default Status!</div> -->
 
-  <div id="status">default</div>
-
-  <div id="grids" class="visible">
-    <div id="player-area" class="container"></div><br><br><br>
+  <div id="grids">
+    <div id="player-area" class="container"></div>
     <div id="computer-area" class="container"></div>
   </div>
-  
+
 
   <script src="main.js"></script>
 </body>

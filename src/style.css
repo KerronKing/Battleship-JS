@@ -1,3 +1,7 @@
+body {
+  font-family: Impact, Charcoal, sans-serif;
+}
+
 .hidden {
   visibility: hidden;
   height: 0px;
@@ -8,20 +12,77 @@
   visibility: visible;
 }
 
+.btn {
+  padding: 0.9rem;
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 0.6rem;
+}
+
+#user-submit {
+  padding: 0.6rem;
+}
+
+#status {
+  text-align: center;
+  font-size: 42px;
+}
+
+.wrapper {
+  position: absolute;
+  padding: 30px;
+  width: 30%;
+}
+
 .container {
-display: grid;
-grid-template-columns: repeat(10, 1fr);
-grid-template-rows: repeat(10, 1fr);
-grid-column-gap: 0px;
-grid-row-gap: 0px;
-left: 40rem;
-position: relative;
-top: 2.5rem;
-width: 500px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  left: 40rem;
+  position: relative;
+  top: 2.5rem;
+  width: 500px;
 }
 
 .square {
-border: 1px solid;
-height: 1.5rem;
-width: 100%;
+  border: 1px solid;
+  height: 1.5rem;
+  width: 100%;
+}
+
+#grids {
+  margin-top: 20vh;
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+}
+
+#player-area {
+  margin-left: -15rem;
+  background-image: url("paper.gif");
+}
+
+#computer-area {
+  margin-left: 9rem;
+}
+
+.fade-in {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 2s;
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
