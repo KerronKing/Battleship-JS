@@ -69,7 +69,7 @@ input {
   left: 40rem;
   position: relative;
   top: 2.5rem;
-  width: 500px;
+  width: 25rem;
 }
 
 .square {
@@ -88,6 +88,8 @@ input {
   margin-top: 20vh;
   display: flex;
   flex-direction: row;
+  position: relative;
+  right: 3rem;
   width: 50%;
 }
 
@@ -98,7 +100,7 @@ input {
 }
 
 #computer-area {
-  margin-left: 9rem;
+  margin-left: 4rem;
   background-image: url("water.jpg");
   background-size: cover;
 }
@@ -135,4 +137,20 @@ input {
 	100% {
 		opacity: 1;
 	}
+}
+
+@media only screen and (max-width: 1200px) {
+  .container { width: 32rem; }
+  #grids { flex-direction: column; }
+  #player-area { margin-bottom: 2rem; }
+  #computer-area {
+    position: relative;
+    left: 21rem;
+  }
+}
+@media only screen and (max-width: 782px) {
+  #wrapper { width: 20%; }
+  h1 { font-size: 2rem; }
+  p { font-size: 1.1rem; }
+  #grids { right: 6rem; }
 }
