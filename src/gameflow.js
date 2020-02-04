@@ -33,9 +33,13 @@ const gameflow = (() => {
     }
   };
 
-  const computerTarget = (array) => {
-    const num = Math.floor(Math.random() * 10);
-    return array[num] === 'miss' || array[num] === 'hit' ? computerTarget(array) : num;
+  const computerTarget = (arr) => {
+    let index = Math.floor(Math.random() * 100);
+
+    while (arr[index] === 'hit' || arr[index] === 'miss') {
+      index = Math.floor(Math.random() * 100);
+    }
+    return index;
   };
 
   const gameWon = (arr) => {
