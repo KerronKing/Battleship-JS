@@ -22,11 +22,17 @@ body {
   background-color: #2b7d88;
   color: #E7E7E7;
   border: 0px;
+  cursor: pointer;
 }
 
 h1 {
-    font-family: 'Bowlby One SC';
+  font-family: 'Bowlby One SC';
   font-size: 42px;
+}
+
+p {
+  margin-right: 0.4rem;
+  font-size: 25px;
 }
 
 input {
@@ -38,12 +44,14 @@ input {
   background-color: #2b7d88;
   color: #E7E7E7;
   border: 0px;
+  cursor: pointer;
 }
 
 #status {
   text-align: center;
   font-size: 42px;
-  font-family: 'Sigmar One', cursive;
+  font-family: 'Bowlby One SC';
+  margin-top: 2rem;
 }
 
 .wrapper {
@@ -68,6 +76,12 @@ input {
   border: 1px solid black;
   height: 2rem;
   width: 100%;
+}
+
+#computer-area .square:hover {
+  background-color: white;
+  opacity: 60%;
+  cursor: pointer;
 }
 
 #grids {
@@ -99,6 +113,11 @@ input {
   background-image: url("x.png");
   background-size: 100%;
   background-position: center;
+}
+
+.player-ship {
+  border: 1px solid #B30000;
+  background-color: #E56F6F;
 }
 
 .fade-in {

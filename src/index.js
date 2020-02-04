@@ -13,6 +13,7 @@ startBtn.addEventListener('click', (e) => {
 restartBtn.addEventListener('click', (e) => {
   e.preventDefault();
   gameflow.resetGame();
+  formContainer.classList.replace('hidden', 'visible');
 });
 
 gameflow.start();

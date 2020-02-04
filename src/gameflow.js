@@ -63,6 +63,15 @@ const gameflow = (() => {
 
     dom.playerAreaRender();
     dom.computerAreaRender();
+
+    const playerDivs = playerInterface.children;
+
+    Array.from(playerDivs).forEach((elem, j) => {
+      if(gameboard.playerArea[j] === 'ship' || gameboard.playerArea[j] === 'hit') {
+        elem.classList.add('player-ship');
+      }
+    });
+
     console.log(computerShips);
     console.log([computerSunkPositionsCounter, playerSunkPositionsCounter]);
     console.log(gameWon(players));

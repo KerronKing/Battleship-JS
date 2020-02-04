@@ -15,7 +15,6 @@ const dom = (() => {
       const compArea = document.createElement('DIV');
       compArea.classList.add('square');
       compArea.id = `ca-${i}`;
-      compArea.textContent = `${i}`;
       computerInterface.appendChild(compArea);
     }
   };
