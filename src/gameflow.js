@@ -67,14 +67,11 @@ const gameflow = (() => {
     const playerDivs = playerInterface.children;
 
     Array.from(playerDivs).forEach((elem, j) => {
-      if(gameboard.playerArea[j] === 'ship' || gameboard.playerArea[j] === 'hit') {
+      if (gameboard.playerArea[j] === 'ship' || gameboard.playerArea[j] === 'hit') {
         elem.classList.add('player-ship');
       }
     });
 
-    console.log(computerShips);
-    console.log([computerSunkPositionsCounter, playerSunkPositionsCounter]);
-    console.log(gameWon(players));
     const computerMove = (index) => {
       while (players[1].moveNumber % 2 === 1) {
         const num = computerTarget(gameboard.playerArea);
@@ -117,18 +114,12 @@ const gameflow = (() => {
             grids.classList.replace('visible', 'hidden');
             status.textContent = `${players[0].name} has won the game! Click restart to play again.`;
           }
-          console.log(computerShips);
-          console.log([computerSunkPositionsCounter, playerSunkPositionsCounter]);
-          console.log(gameWon(players));
         } else if (gameboard.computerArea[i] === false) {
           elem.classList.add('missed');
           gameboard.computerArea[i] = 'miss';
           players[0].moveNumber += 1;
           players[1].moveNumber += 1;
           computerMove(i);
-          console.log(computerShips);
-          console.log([computerSunkPositionsCounter, playerSunkPositionsCounter]);
-          console.log(gameWon(players));
         } else if (gameboard.computerArea[i] === 'hit') {
           invalidMoveAlert();
         }
