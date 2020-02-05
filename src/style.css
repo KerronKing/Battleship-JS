@@ -130,6 +130,12 @@ input {
 	animation-duration: 2s;
 }
 
+.restarter-div {
+  left: 2.355rem;
+  position: absolute;
+  top: 22rem;
+}
+
 @keyframes fadeInOpacity {
 	0% {
 		opacity: 0;

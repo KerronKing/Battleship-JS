@@ -14,26 +14,28 @@
       <p>Start the game below!</p>
 
       <button id="start" class="visible btn">Start Game</button>
-      <button id="restart" class="hidden btn">Restart Game</button>
     </div>
 
     <div id="input-container" class="hidden">
       <form id="user-form">
-        <input type="text" placeholder="Enter player name" id="form-input" name="name">
+        <input type="text" placeholder="Enter player name" id="form-input" name="name" required>
         <button type="submit" id="user-submit">Submit</button>
       </form>
     </div>
 
   </div>
 
-  <div id="status"><div>
+  <div id="status">
+  </div>
 
   <div id="grids">
     <div id="player-area" class="container"></div>
     <div id="computer-area" class="container"></div>
   </div>
 
-
+  <div class="restarter-div">
+    <button id="restart" class="hidden btn" type="reset">Restart Game</button>
+  </div>
   <script src="main.js"></script>
 </body>
 </html>
