@@ -6,6 +6,20 @@ The aim of this project was to build a playable version of the classic game, Bat
 
 Click [here](https://rawcdn.githack.com/KerronKing/Battleship-JS/2744e1d480ce54d688546b6b87e00dc4f3aa85c6/dist/index.html) to see the live version.
 
+## How To Use
+
+* Open the terminal and clone the repo
+```
+https://github.com/KerronKing/Tic-Tac-Toe-JS.git
+```
+* Press 'Start Game' in to bring up the form.
+
+* Enter you name and press "Submit".
+
+* Play the game by clicking the enemy grid squares (the grid on the right).
+
+* Restart the game by clicking "Restart Game" and pressing "Submit" on the form.
+
 ## Technologies
 
 This page was built using the following technologies:
