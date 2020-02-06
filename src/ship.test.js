@@ -1,8 +1,5 @@
 import Ship from "./ship";
 
-beforeEach(() => {
-  const firstShip = Ship("Cargo Ship", 1);
-});
 test("it creates an instance of a ship named Cargo Ship", () => {
   const firstShip = Ship("Cargo Ship", 1);
   expect(firstShip.name).toEqual("Cargo Ship");
