@@ -58,11 +58,9 @@ const Gameboard = name => {
   };
 
   const populateBoard = () => {
-    // Iterates over array of ship objects
     let ship;
     generateShipObjects();
     const shipObjectsArray = ships;
-    // const area = areaArray;
     for (let i = 0; i < shipObjectsArray.length; i += 1) {
       do {
         ship = createShip(shipObjectsArray[i].shipLength);
