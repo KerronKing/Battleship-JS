@@ -2,7 +2,7 @@ const Ship = (name, shipLength) => {
   const position = [];
   const hitPositions = [];
 
-  const hit = (num) => {
+  const hit = num => {
     hitPositions.push(num);
   };
 
@@ -14,7 +14,12 @@ const Ship = (name, shipLength) => {
   }
 
   return {
-    name, shipLength, position, hitPositions, hit, isSunk,
+    name,
+    shipLength,
+    position,
+    hitPositions,
+    hit,
+    isSunk
   };
 };
 export default Ship;

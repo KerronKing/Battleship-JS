@@ -1,5 +1,5 @@
 const mapper = (() => {
-  const numConverter = (num) => {
+  const numConverter = num => {
     let coordinates;
     if (num < 10) {
       coordinates = [0, num];
@@ -9,7 +9,7 @@ const mapper = (() => {
     }
     return coordinates;
   };
-  const coordConverter = (arr) => {
+  const coordConverter = arr => {
     let num;
     if (arr[0] === 0) {
       [, num] = arr;
