@@ -77,13 +77,24 @@ const Gameboard = (name) => {
     return shipObjectsArray;
   };
 
+  const invalidMoveAlert = () => {
+    const status = document.getElementById('status');
+    status.textContent = 'Invalid move. Please play again.';
+  };
+
   const receiveAttack = (x, y) => {
     const arr = this.ships;
     const position = mapper.coordConverter([x, y]);
 
     for (let i = 0; i < arr.length; i += 1) {
-      if (arr[i].position.indexOf(position) >= 0) {
+      if (arr[i].position.indexOf(position) >= 0
+      && this.areaArray[x][y] === 'ship') {
         arr[i].hit(position);
+        this.areaArray[x][y] = 'hit';
+      } else if (this.areaArray[x][y] === 'hit') {
+        invalidMoveAlert();
+      } else if (this.areaArray[x][y] === '') {
+        this.areaArray[x][y] = 'missed';
       }
     }
   };

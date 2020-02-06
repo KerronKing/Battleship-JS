@@ -14,8 +14,6 @@ const gameflow = (() => {
   const computerInterface = document.getElementById('computer-area');
   const grids = document.getElementById('grids');
 
-  const invalidMoveAlert = () => 'Invalid move. Please play again.';
-
   const generatePlayers = (data) => {
     const player = Player(data, 1);
     const computer = Player('Computer', 0);
