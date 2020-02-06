@@ -22,16 +22,6 @@ const gameflow = (() => {
     players.push(player);
     players.push(computer);
   };
-  const generateShips = () => {
-    for (let i = 1; i <= 5; i += 1) {
-      const ship = Ship(`player-ship-${i}`, i);
-      playerShips.push(ship);
-    }
-    for (let i = 1; i <= 5; i += 1) {
-      const ship = Ship(`computer-ship-${i}`, i);
-      computerShips.push(ship);
-    }
-  };
 
   const computerTarget = (arr) => {
     let index = Math.floor(Math.random() * 100);
