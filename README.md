@@ -4,7 +4,7 @@ The aim of this project was to build a playable version of the classic game, Bat
 
 ## Demo
 
-Click [here](https://rawcdn.githack.com/KerronKing/Battleship-JS/e4079adffe28359ef52bfa7899ac31abf079d0a8/dist/index.html) to see the live version.
+Click [here](https://rawcdn.githack.com/KerronKing/Battleship-JS/56aac3cd696ecbe534c9d4430eeab7607ba826b0/dist/index.html) to see the live version.
 
 ## How To Use
 
