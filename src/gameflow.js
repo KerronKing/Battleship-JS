@@ -1,14 +1,11 @@
 import dom from './dom';
-import gameboard from './gameboard';
+import mapper from './mapper';
+import Gameboard from './gameboard';
 import Player from './player';
-import Ship from './ship';
 
 const gameflow = (() => {
   let players = [];
-  let playerShips = [];
-  let computerShips = [];
-  let playerSunkPositionsCounter = 0;
-  let computerSunkPositionsCounter = 0;
+  let boardObjects = [];
   const status = document.getElementById('status');
   const playerInterface = document.getElementById('player-area');
   const computerInterface = document.getElementById('computer-area');
@@ -23,31 +20,40 @@ const gameflow = (() => {
 
   const computerTarget = (arr) => {
     let index = Math.floor(Math.random() * 100);
+    let coords = mapper.numConverter(index);
 
-    while (arr[index] === 'hit' || arr[index] === 'miss') {
+    while (arr[coords[0]][coords[1]] === 'hit' || arr[coords[0]][coords[1]] === 'miss') {
       index = Math.floor(Math.random() * 100);
+      coords = mapper.numConverter(index);
     }
-    return index;
+    return coords;
   };
 
   const gameWon = (arr) => {
-    const playerArr = arr;
+    const boards = arr;
+    let counter;
 
-    if (computerSunkPositionsCounter === 15) {
-      playerArr[0].won = true;
-      return true;
+    for (let i = 0; i < boards.length; i += 1) {
+      for (let j = 0; j < boards[0].ships.length; j += 1) {
+        if (boards[i].ships[j].isSunk()) {
+          counter += 1;
+        }
+      }
     }
-    if (playerSunkPositionsCounter === 15) {
-      playerArr[1].won = true;
+    if (counter === 5) {
       return true;
     }
     return false;
   };
 
   const runGame = () => {
-    generateShips();
-    gameboard.populateBoard(playerShips, gameboard.playerArea);
-    gameboard.populateBoard(computerShips, gameboard.computerArea);
+    const playerBoard = Gameboard('Player Board');
+    const computerBoard = Gameboard('Computer Board');
+    boardObjects.push(playerBoard);
+    boardObjects.push(computerBoard);
+
+    boardObjects[0].populateBoard();
+    boardObjects[1].populateBoard();
 
     dom.playerAreaRender();
     dom.computerAreaRender();
@@ -55,31 +61,29 @@ const gameflow = (() => {
     const playerDivs = playerInterface.children;
 
     Array.from(playerDivs).forEach((elem, j) => {
-      if (gameboard.playerArea[j] === 'ship' || gameboard.playerArea[j] === 'hit') {
+      const coords = mapper.numConverter(j);
+      if (boardObjects[0].areaArray[coords[0][coords[1]]] === 'ship'
+      || boardObjects[0].areaArray[coords[0][coords[1]]] === 'hit') {
         elem.classList.add('player-ship');
       }
     });
 
-    const computerMove = (index) => {
+    const computerMove = () => {
       while (players[1].moveNumber % 2 === 1) {
-        const num = computerTarget(gameboard.playerArea);
+        const crds = computerTarget(boardObjects[0].areaArray);
+        const num = mapper.coordConverter(crds);
         const target = document.getElementById(`pa-${num}`);
-        if (gameboard.playerArea[num] === 'ship') {
+
+        if (boardObjects[0].areaArray[crds[0]][crds[1]] === 'ship') {
           target.classList.add('ship-hit');
-          gameboard.playerArea[num] = 'hit';
-          playerShips.forEach((item) => {
-            if (item.position.indexOf(index) >= 0) {
-              item.hitPositions.push(index);
-            }
-          });
-          playerSunkPositionsCounter += 1;
-          if (gameWon(players)) {
+          boardObjects[0].receiveAttack(crds[0], crds[1]);
+          if (gameWon(boardObjects)) {
             grids.classList.replace('visible', 'hidden');
             status.textContent = `${players[1].name} has won the game! Click restart to play again.`;
           }
-        } else if (gameboard.playerArea[num] === false) {
+        } else if (boardObjects[0].areaArray[crds[0]][crds[1]] === '') {
           target.classList.add('missed');
-          gameboard.playerArea[num] = 'miss';
+          boardObjects[0].receiveAttack(crds[0], crds[1]);
           players[0].moveNumber += 1;
           players[1].moveNumber += 1;
         }
@@ -87,39 +91,33 @@ const gameflow = (() => {
     };
     const computerDivs = computerInterface.children;
     Array.from(computerDivs).forEach((elem, i) => {
+      const crds = mapper.numConverter(i);
       elem.addEventListener('click', (e) => {
         e.preventDefault();
-        if (gameboard.computerArea[i] === 'ship') {
+        console.log(boardObjects[1].ships);
+        console.log(boardObjects[1].ships[0].isSunk());
+        if (boardObjects[1].areaArray[crds[0]][crds[1]] === 'ship') {
           elem.classList.add('ship-hit');
-          gameboard.computerArea[i] = 'hit';
-          computerShips.forEach((item) => {
-            if (item.position.indexOf(i) >= 0) {
-              item.hitPositions.push(i);
-            }
-          });
-          computerSunkPositionsCounter += 1;
-          if (gameWon(players)) {
+          boardObjects[1].receiveAttack(crds[0], crds[1]);
+          if (gameWon(boardObjects)) {
             grids.classList.replace('visible', 'hidden');
             status.textContent = `${players[0].name} has won the game! Click restart to play again.`;
           }
-        } else if (gameboard.computerArea[i] === false) {
+        } else if (boardObjects[1].areaArray[crds[0]][crds[1]] === '') {
           elem.classList.add('missed');
-          gameboard.computerArea[i] = 'miss';
+          boardObjects[1].receiveAttack(crds[0], crds[1]);
           players[0].moveNumber += 1;
           players[1].moveNumber += 1;
-          computerMove(i);
-        } else if (gameboard.computerArea[i] === 'hit') {
-          invalidMoveAlert();
+          computerMove();
+        } else if (boardObjects[1].areaArray[crds[0]][crds[1]] === 'hit') {
+          dom.invalidMoveAlert();
         }
       });
     });
   };
   const resetGame = () => {
     players = [];
-    playerShips = [];
-    computerShips = [];
-    gameboard.playerArea = new Array(100).fill(false);
-    gameboard.computerArea = new Array(100).fill(false);
+    boardObjects = [];
     playerInterface.innerHTML = '';
     computerInterface.innerHTML = '';
   };

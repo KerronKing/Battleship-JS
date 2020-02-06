@@ -1,17 +1,17 @@
 const Ship = (name, shipLength) => {
-  const position = new Array(shipLength).fill('');
+  const position = [];
   const hitPositions = [];
 
   const hit = (num) => {
-    this.hitPositions.push(num);
+    hitPositions.push(num);
   };
 
-  const isSunk = () => {
-    if (this.positions.length === this.hitPositions.length) {
+  function isSunk() {
+    if (hitPositions.length === shipLength) {
       return true;
     }
     return false;
-  };
+  }
 
   return {
     name, shipLength, position, hitPositions, hit, isSunk,

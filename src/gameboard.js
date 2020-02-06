@@ -53,7 +53,7 @@ const Gameboard = (name) => {
   const generateShipObjects = () => {
     for (let i = 1; i <= 5; i += 1) {
       const newShip = Ship(`ship-${i}`, i);
-      this.ships.push(newShip);
+      ships.push(newShip);
     }
   };
 
@@ -61,7 +61,7 @@ const Gameboard = (name) => {
     // Iterates over array of ship objects
     let ship;
     generateShipObjects();
-    const shipObjectsArray = this.ships;
+    const shipObjectsArray = ships;
     // const area = areaArray;
     for (let i = 0; i < shipObjectsArray.length; i += 1) {
       do {
@@ -70,31 +70,24 @@ const Gameboard = (name) => {
 
       for (let j = 0; j < ship.length; j += 1) {
         const coords = mapper.numConverter(ship[j]);
-        this.areaArray[coords[0]][coords[1]] = 'ship';
+        areaArray[coords[0]][coords[1]] = 'ship';
       }
       shipObjectsArray[i].position = ship;
     }
-    return shipObjectsArray;
-  };
-
-  const invalidMoveAlert = () => {
-    const status = document.getElementById('status');
-    status.textContent = 'Invalid move. Please play again.';
+    // return shipObjectsArray;
   };
 
   const receiveAttack = (x, y) => {
-    const arr = this.ships;
+    const arr = ships;
     const position = mapper.coordConverter([x, y]);
 
     for (let i = 0; i < arr.length; i += 1) {
       if (arr[i].position.indexOf(position) >= 0
-      && this.areaArray[x][y] === 'ship') {
+      && areaArray[x][y] === 'ship') {
         arr[i].hit(position);
-        this.areaArray[x][y] = 'hit';
-      } else if (this.areaArray[x][y] === 'hit') {
-        invalidMoveAlert();
-      } else if (this.areaArray[x][y] === '') {
-        this.areaArray[x][y] = 'missed';
+        areaArray[x][y] = 'hit';
+      } else if (areaArray[x][y] === '') {
+        areaArray[x][y] = 'missed';
       }
     }
   };

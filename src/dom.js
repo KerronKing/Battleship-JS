@@ -15,9 +15,16 @@ const dom = (() => {
       const compArea = document.createElement('DIV');
       compArea.classList.add('square');
       compArea.id = `ca-${i}`;
+      compArea.textContent = `${i}`;
       computerInterface.appendChild(compArea);
     }
   };
-  return { playerAreaRender, computerAreaRender };
+
+  const invalidMoveAlert = () => {
+    const status = document.getElementById('status');
+    status.textContent = 'Invalid move. Please play again.';
+  };
+
+  return { playerAreaRender, computerAreaRender, invalidMoveAlert };
 })();
 export default dom;
