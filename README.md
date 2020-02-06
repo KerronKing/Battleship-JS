@@ -10,7 +10,7 @@ Click [here](https://rawcdn.githack.com/KerronKing/Battleship-JS/56aac3cd696ecbe
 
 * Open the terminal and clone the repo
 ```
-https://github.com/KerronKing/Tic-Tac-Toe-JS.git
+https://github.com/KerronKing/Battleship-JS.git
 ```
 * Press 'Start Game' in to bring up the form.
 
