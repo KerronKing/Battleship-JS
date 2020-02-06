@@ -1,6 +1,19 @@
-const gameboard = (() => {
-  const playerArea = new Array(100).fill(false);
-  const computerArea = new Array(100).fill(false);
+import mapper from './mapper';
+
+const Gameboard = (name) => {
+  const areaArray = [
+    ['', '', '', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', '', '', ''],
+  ];
+
   const createShip = (length) => {
     const directionArray = ['horizontal', 'vertical'];
     const direction = directionArray[Math.floor(Math.random() * 2)];
@@ -52,6 +65,6 @@ const gameboard = (() => {
     return shipObjectsArray;
   };
 
-  return { playerArea, computerArea, populateBoard };
-})();
-export default gameboard;
+  return { name, areaArray, populateBoard };
+};
+export default Gameboard;
