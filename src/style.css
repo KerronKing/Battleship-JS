@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Bowlby+One+SC|Lobster&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Bowlby+One+SC|Lobster&display=swap");
 
 body {
-  font-family: 'Lobster', cursive;
-  background-color: #1C5584;
-  color: #E7E7E7;
+  font-family: "Lobster", cursive;
+  background-color: #1c5584;
+  color: #e7e7e7;
 }
 
 .hidden {
@@ -20,13 +20,13 @@ body {
   padding: 0.9rem;
   margin-bottom: 20px;
   background-color: #2b7d88;
-  color: #E7E7E7;
+  color: #e7e7e7;
   border: 0px;
   cursor: pointer;
 }
 
 h1 {
-  font-family: 'Bowlby One SC';
+  font-family: "Bowlby One SC";
   font-size: 42px;
 }
 
@@ -42,15 +42,15 @@ input {
 #user-submit {
   padding: 0.6rem;
   background-color: #2b7d88;
-  color: #E7E7E7;
+  color: #e7e7e7;
   border: 0px;
   cursor: pointer;
 }
 
 #status {
   text-align: center;
-  font-size: 42px;
-  font-family: 'Bowlby One SC';
+  font-size: 24px;
+  font-family: "Bowlby One SC";
   margin-top: 2rem;
 }
 
@@ -118,16 +118,16 @@ input {
 }
 
 .player-ship {
-  border: 1px solid #B30000;
-  background-color: #E56F6F;
+  border: 1px solid #b30000;
+  background-color: #e56f6f;
 }
 
 .fade-in {
-	opacity: 1;
-	animation-name: fadeInOpacity;
-	animation-iteration-count: 1;
-	animation-timing-function: ease-in;
-	animation-duration: 2s;
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 2s;
 }
 
 .restarter-div {
@@ -137,26 +137,40 @@ input {
 }
 
 @keyframes fadeInOpacity {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @media only screen and (max-width: 1200px) {
-  .container { width: 32rem; }
-  #grids { flex-direction: column; }
-  #player-area { margin-bottom: 2rem; }
+  .container {
+    width: 32rem;
+  }
+  #grids {
+    flex-direction: column;
+  }
+  #player-area {
+    margin-bottom: 2rem;
+  }
   #computer-area {
     position: relative;
     left: 21rem;
   }
 }
 @media only screen and (max-width: 782px) {
-  #wrapper { width: 20%; }
-  h1 { font-size: 2rem; }
-  p { font-size: 1.1rem; }
-  #grids { right: 6rem; }
+  #wrapper {
+    width: 20%;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  p {
+    font-size: 1.1rem;
+  }
+  #grids {
+    right: 6rem;
+  }
 }
