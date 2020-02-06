@@ -19,7 +19,7 @@ const Ship = (name, shipLength) => {
     position,
     hitPositions,
     hit,
-    isSunk
+    isSunk,
   };
 };
 export default Ship;

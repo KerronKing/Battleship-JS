@@ -12,7 +12,7 @@ const Gameboard = name => {
     ['', '', '', '', '', '', '', '', '', ''],
     ['', '', '', '', '', '', '', '', '', ''],
     ['', '', '', '', '', '', '', '', '', ''],
-    ['', '', '', '', '', '', '', '', '', '']
+    ['', '', '', '', '', '', '', '', '', ''],
   ];
   const ships = [];
 
@@ -82,8 +82,8 @@ const Gameboard = name => {
 
     for (let i = 0; i < arr.length; i += 1) {
       if (
-        arr[i].position.indexOf(position) >= 0 &&
-        areaArray[x][y] === 'ship'
+        arr[i].position.indexOf(position) >= 0
+        && areaArray[x][y] === 'ship'
       ) {
         arr[i].hit(position);
         areaArray[x][y] = 'hit';
@@ -112,7 +112,7 @@ const Gameboard = name => {
     ships,
     populateBoard,
     receiveAttack,
-    gameWon
+    gameWon,
   };
 };
 export default Gameboard;

@@ -24,8 +24,8 @@ const gameflow = (() => {
     let coords = mapper.numConverter(index);
 
     while (
-      arr[coords[0]][coords[1]] === 'hit' ||
-      arr[coords[0]][coords[1]] === 'miss'
+      arr[coords[0]][coords[1]] === 'hit'
+      || arr[coords[0]][coords[1]] === 'miss'
     ) {
       index = Math.floor(Math.random() * 100);
       coords = mapper.numConverter(index);
@@ -50,8 +50,8 @@ const gameflow = (() => {
     Array.from(playerDivs).forEach((elem, j) => {
       const coords = mapper.numConverter(j);
       if (
-        boardObjects[0].areaArray[coords[0][coords[1]]] === 'ship' ||
-        boardObjects[0].areaArray[coords[0][coords[1]]] === 'hit'
+        boardObjects[0].areaArray[coords[0][coords[1]]] === 'ship'
+        || boardObjects[0].areaArray[coords[0][coords[1]]] === 'hit'
       ) {
         elem.classList.add('player-ship');
       }
