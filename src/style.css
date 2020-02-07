@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css?family=Bowlby+One+SC|Lobster&display=swap");
+
+body {
+  font-family: "Lobster", cursive;
+  background-color: #1c5584;
+  color: #e7e7e7;
+}
+
+.hidden {
+  visibility: hidden;
+  height: 0px;
+  width: 0px;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.btn {
+  padding: 0.9rem;
+  margin-bottom: 20px;
+  background-color: #2b7d88;
+  color: #e7e7e7;
+  border: 0px;
+  cursor: pointer;
+}
+
+h1 {
+  font-family: "Bowlby One SC";
+  font-size: 42px;
+}
+
+p {
+  margin-right: 0.4rem;
+  font-size: 25px;
+}
+
+input {
+  padding: 0.6rem;
+}
+
+#user-submit {
+  padding: 0.6rem;
+  background-color: #2b7d88;
+  color: #e7e7e7;
+  border: 0px;
+  cursor: pointer;
+}
+
+#status {
+  text-align: center;
+  font-size: 24px;
+  font-family: "Bowlby One SC";
+  margin-top: 2rem;
+}
+
+.wrapper {
+  position: absolute;
+  padding: 30px;
+  width: 30%;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  left: 40rem;
+  position: relative;
+  top: 2.5rem;
+  width: 25rem;
+}
+
+.square {
+  border: 1px solid black;
+  height: 2rem;
+  width: 100%;
+}
+
+#computer-area .square:hover {
+  background-color: white;
+  opacity: 60%;
+  cursor: pointer;
+}
+
+#grids {
+  margin-top: 20vh;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  right: 3rem;
+  width: 50%;
+}
+
+#player-area {
+  margin-left: -15rem;
+  background-image: url("water.jpg");
+  background-size: cover;
+}
+
+#computer-area {
+  margin-left: 4rem;
+  background-image: url("water.jpg");
+  background-size: cover;
+}
+
+.ship-hit {
+  background-image: url("explosion.png");
+  background-size: 100%;
+  background-position: center;
+}
+
+.missed {
+  background-image: url("x.png");
+  background-size: 100%;
+  background-position: center;
+}
+
+.player-ship {
+  border: 1px solid #b30000;
+  background-color: #e56f6f;
+}
+
+.fade-in {
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 2s;
+}
+
+.restarter-div {
+  left: 2.355rem;
+  position: absolute;
+  top: 22rem;
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    width: 32rem;
+  }
+  #grids {
+    flex-direction: column;
+  }
+  #player-area {
+    margin-bottom: 2rem;
+  }
+  #computer-area {
+    position: relative;
+    left: 21rem;
+  }
+}
+@media only screen and (max-width: 782px) {
+  #wrapper {
+    width: 20%;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  p {
+    font-size: 1.1rem;
+  }
+  #grids {
+    right: 6rem;
+  }
+}

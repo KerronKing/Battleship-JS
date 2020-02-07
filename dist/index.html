@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Battleship</title>
+</head>
+<body>
+
+  <div class="wrapper">
+    <div id="start-area fade-in">
+      <h1>BATTLESHIP</h1>
+      <p>Start the game below!</p>
+
+      <button id="start" class="visible btn">Start Game</button>
+    </div>
+
+    <div id="input-container" class="hidden">
+      <form id="user-form">
+        <input type="text" placeholder="Enter player name" id="form-input" name="name" required>
+        <button type="submit" id="user-submit">Submit</button>
+      </form>
+    </div>
+
+  </div>
+
+  <div id="status">
+  </div>
+
+  <div id="grids">
+    <div id="player-area" class="container"></div>
+    <div id="computer-area" class="container"></div>
+  </div>
+
+  <div class="restarter-div">
+    <button id="restart" class="hidden btn" type="reset">Restart Game</button>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
