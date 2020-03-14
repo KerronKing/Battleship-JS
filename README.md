@@ -2,6 +2,10 @@
 
 The aim of this project was to build a playable version of the classic game, Battleship, using mainly JavaScript technologies. You can view the project specifications [here](https://www.theodinproject.com/courses/javascript/lessons/battleship).
 
+<p align="center">
+  <img src="screencap.jpg">
+</p>
+
 ## Demo
 
 Click [here](https://rawcdn.githack.com/KerronKing/Battleship-JS/56aac3cd696ecbe534c9d4430eeab7607ba826b0/dist/index.html) to see the live version.
