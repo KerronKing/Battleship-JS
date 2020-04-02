@@ -1,16 +1,28 @@
-# Battleship-JS
+<h1 align="center">Battleship-JS</h1>
 
-The aim of this project was to build a playable version of the classic game, Battleship, using mainly JavaScript technologies. You can view the project specifications [here](https://www.theodinproject.com/courses/javascript/lessons/battleship).
+## Table of Contents
+* [About](#About)
+* [Live Demo](#demo)
+* [How To Use](#use)
+* [Testing](#Testing)
+* [Built With](#built)
+* [Contributing](#Contributing)
+* [Show Your Support](#show)
+* [Authors](#Authors)
 
 <p align="center">
   <img src="screencap.jpg">
 </p>
 
-## Demo
+## About
+
+The aim of this project was to build a playable version of the classic game, Battleship, using mainly JavaScript technologies. You can view the project specifications [here](https://www.theodinproject.com/courses/javascript/lessons/battleship).
+
+## Live Demo <span id="demo"></span>
 
 Click [here](https://rawcdn.githack.com/KerronKing/Battleship-JS/56aac3cd696ecbe534c9d4430eeab7607ba826b0/dist/index.html) to see the live version.
 
-## How To Use
+## How To Use <span id="use"></span>
 
 * Open the terminal and clone the repo
 ```
@@ -24,10 +36,19 @@ https://github.com/KerronKing/Battleship-JS.git
 
 * Restart the game by clicking "Restart Game" and pressing "Submit" on the form.
 
-## Technologies
+## Testing
+
+* cd into the project directory after cloning.
+
+* To run this app's test suite, open the terminal and enter the following command:
+```
+npm test
+```
+
+## Built With <span id="built"></span>
 
 This page was built using the following technologies:
-- JavaScript 
+- JavaScript
 - HTML5
 - CSS3
 - Webpack
@@ -38,11 +59,21 @@ Contributions, issues and feature requests are welcome!
 
 Feel free to check the [issues page](https://github.com/KerronKing/Battleship-JS/issues).
 
-## Show your support
+## Show your support <span id="show"></span>
 
 Feel free to drop a :+1: to show your support. It'd be greatly appreciated it :pray:
 
 ## Authors
 
-[Kerron King](https://github.com/KerronKing)
-[Eva Veskova jackson](https://github.com/evaveskova)
+:bust_in_silhouette: Kerron King
+
+* Github: [@KerronKing](https://github.com/KerronKing)
+* Email: kerronk1989@gmail.com
+* Linkedin: [Kerron King](linkedin.com/in/kerron-shawn-king)
+
+:bust_in_silhouette: Eva Veskova Jackson
+
+* Github: [Eva Veskova Jackson](https://github.com/evaveskova)
+* Email: evaveskova@gmail.com
+* Linkedin: [Eva Veskova Jackson](linkedin.com/in/evaveskova)
+
