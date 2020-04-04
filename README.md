@@ -81,6 +81,5 @@ Feel free to drop a :+1: to show your support. It'd be greatly appreciated it :p
 :bust_in_silhouette: Eva Veskova Jackson
 
 * Github: [Eva Veskova Jackson](https://github.com/evaveskova)
-* Email: evaveskova@gmail.com
 * Linkedin: [Eva Veskova Jackson](linkedin.com/in/evaveskova)
 
